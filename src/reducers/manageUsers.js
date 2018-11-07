@@ -1,6 +1,7 @@
 const initState = {
   messages: [],
   message: "temp",
+  login_user: null,
   users: [],
   scores: [],
   selectedUser: {},
@@ -22,8 +23,19 @@ export default function manageUsers (state = initState, action) {
         ...state,
         users: [ ...state.users]
       }
+    case 'NEW_USER':
+      console.log("new user")
+      return {
+        ...state,
+        login_user: action.payload
+      }
+
     case ('SELECT_USER'): {
       return {...state, selectedUser: action.payload}
+    }
+
+    case('LOGIN'): {
+      return {...state, login_user: action.payload}
     }
 
     case ('EDIT_USER'): {

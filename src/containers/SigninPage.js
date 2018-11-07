@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Header, Image, Icon, Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
 
-import { loadUsers } from '../actions/userActions'
-import { loadScores } from '../actions/scoreActions'
+import { newUser } from '../actions/userActions'
 import { connect } from 'react-redux'
 
 
@@ -47,41 +46,18 @@ class SignPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const newUser = {
+    const addUser = {
       name:`${this.state.first_name} ${this.state.last_name}`,
       username:this.state.username,
       password:this.state.password
     }
-    let error = this.props.onSignUp(newUser)
+
+    let error = this.props.newUser(addUser)
     console.log(error)
-    error ? alert("username is taken") : this.props.history.push("/");
+    error ? alert(error) : this.props.history.push("/");
 
   }
-  onSignUp = (user) => {
-    fetch('http://localhost:3000/hosts/', {
-      method: "POST",
-      headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
-      body: JSON.stringify({
-        "name":user.name,
-        "username":user.username,
-        "password":user.password,
-      }),
-    }).then(res => res.json()).then(console.log)
-    fetch('http://localhost:3000/renters/', {
-      method: "POST",
-      headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
-      body: JSON.stringify({
-        "name":user.name,
-        "username":user.username,
-      }),
-    }).then(res => res.json()).then(console.log)
-  }
+
 
 
 
@@ -130,8 +106,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadUsers: () => dispatch(loadUsers()),
-    loadScores: () => dispatch(loadScores())
+    newUser: (user) => dispatch(newUser(user))
   }
 }
 

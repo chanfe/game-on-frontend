@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Header, Image, Icon, Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
 
+import { loginUser } from '../actions/userActions'
+import { connect } from 'react-redux'
+
 class LoginPage extends Component {
 
   constructor(props){
@@ -24,33 +27,11 @@ class LoginPage extends Component {
     })
   }
 
-  handleLoginModal = () =>{
-    console.log(this.state)
-    this.login(this.state.username, this.state.password);
+  handleSubmit = () =>{
+    console.log("yoh", this.state.username, this.state.password)
+    this.props.loginUser(this.state.username, this.state.password);
   }
 
-  login = (username, password) =>{
-    fetch('http://localhost:3000/auth', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        username,
-        password
-      })
-    }).then(res => res.json())
-    .then(resp => {
-        console.log("responce from login ",resp)
-        if (resp.error) {
-          this.setState({ error: resp.error });
-        } else {
-          this.props.handleLogin(resp);
-          this.props.handleLoginClick();
-        }
-      });
-  }
 
 
   render(){
@@ -59,7 +40,7 @@ class LoginPage extends Component {
         <Grid centered columns={2}>
           <Grid.Column>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Field value={this.state.username} onChange={this.handleUserName}>
+              <Form.Field value={this.state.username} onChange={this.handleUsername}>
               <label>Username</label>
               <input placeholder='Username' />
               </Form.Field>
@@ -76,4 +57,19 @@ class LoginPage extends Component {
   };
 };
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    users: state.users,
+    scores: state.scores
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (username, password) => dispatch(loginUser(username, password))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

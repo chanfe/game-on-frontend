@@ -8,7 +8,7 @@ export const updateScore = (score) => {
   return (dispatch) => {
     fetch(`${API_ROOT}/scores/${score.id}`, {
       method: 'PATCH',
-      headers: {HEADERS},
+      headers: HEADERS,
       body: JSON.stringify(score)
     })
     .then(r => r.json())
@@ -18,7 +18,7 @@ export const updateScore = (score) => {
 
 export const loadScores = () => {
   return (dispatch) => {
-    return fetch('http://localhost:3000/scores/')
+    return fetch(`${API_ROOT}/scores`)
     .then(r => r.json())
     .then(allScores => dispatch({type: 'LOAD_SCORES', payload: allScores}))
   }
