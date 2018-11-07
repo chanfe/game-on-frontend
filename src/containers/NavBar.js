@@ -12,9 +12,20 @@ class NavBar extends Component {
     return (
       <Menu tabular>
         <NavLink to="/Score">
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+          <Menu.Item name='score' active={activeItem === 'score'} onClick={this.handleItemClick} />
         </NavLink>
-        <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick} />
+        <NavLink to="/Login">
+          <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick} />
+        </NavLink>
+        <NavLink to="/SignUp">
+          <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick} />
+        </NavLink>
+        <NavLink to="/Game">
+          <Menu.Item name='game' active={activeItem === 'game'} onClick={this.handleItemClick} />
+        </NavLink>
+        <NavLink to="/Game2">
+          <Menu.Item name='game2' active={activeItem === 'game2'} onClick={this.handleItemClick} />
+        </NavLink>
       </Menu>
     )
   }

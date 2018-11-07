@@ -1,9 +1,12 @@
 const initState = {
+  messages: [],
+  message: "temp",
   users: [],
   scores: [],
   selectedUser: {},
   selectedScore: {},
   activeItem:"bio"
+
 }
 
 export default function manageUsers (state = initState, action) {
@@ -38,31 +41,41 @@ export default function manageUsers (state = initState, action) {
         return {...state, scores: action.payload}
       }
 
-      case 'ADD_SCORE':
-        console.log("in add score")
-        return {
-          ...state,
-          scores: [ ...state.scores]
+    case 'ADD_SCORE':
+      console.log("in add score")
+      return {
+        ...state,
+        scores: [ ...state.scores]
+      }
+
+    case ('SELECT_SCORE'): {
+      return {...state, selectedScore: action.payload}
+    }
+
+    case ('EDIT_SCORE'): {
+      // replaces old hobbit object with shiny new edited hobbit
+      const newScores = state.scores.map(score => {
+        if (score.id === action.payload.id) {
+          return {...score, ...action.payload}
         }
-      case ('SELECT_SCORE'): {
-        return {...state, selectedScore: action.payload}
+        return score
+      })
+
+      return {...state, scores: newScores}
+    }
+
+    case ('CHANGE_ITEM'): {
+      return {...state, activeItem: action.payload}
+    }
+
+    case ('ADD_MESSAGE'):
+      return {
+        ...state,
+        messages: [...state.messages]
       }
 
-      case ('EDIT_SCORE'): {
-        // replaces old hobbit object with shiny new edited hobbit
-        const newScores = state.scores.map(score => {
-          if (score.id === action.payload.id) {
-            return {...score, ...action.payload}
-          }
-          return score
-        })
-
-        return {...state, scores: newScores}
-      }
-
-      case ('CHANGE_ITEM'): {
-        return {...state, activeItem: action.payload}
-      }
+    case ('SET_MESSAGES'):
+      return action.message
 
     default:
       return state;
