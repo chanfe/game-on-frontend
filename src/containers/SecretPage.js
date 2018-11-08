@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Header, Image, Icon, Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
+import ConversationsList from '../components/ConversationsList';
+import { connect } from 'react-redux'
 
 class LoginPage extends Component {
 
@@ -13,10 +15,26 @@ class LoginPage extends Component {
   render(){
     return (
       <Segment>
-        
+        {this.props.secret ?
+          <ConversationsList />
+          : <LoginPage />
+        }
+
       </Segment>
     );
   };
 };
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    secret: state.secretPassword
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

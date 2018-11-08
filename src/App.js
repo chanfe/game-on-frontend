@@ -7,7 +7,9 @@ import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SigninPage';
 import GamePage from './containers/GamePage';
 import Game2 from './containers/Game2';
+import SecretPage from './containers/SecretPage';
 import Welcome from './components/Welcome';
+
 
 import { userLogin } from './actions/userActions'
 import { loginUser } from './actions/userActions'
@@ -42,6 +44,7 @@ class App extends Component {
                 <Route exact path="/Game" render={(props) => <GamePage />}/>
                 <Route exact path="/Game2" render={(props) => <Game2 />}/>
                 <Route exact path="/Score" render={(props) => <ScorePage />}/>
+                <Route exact path="/Secret" render={(props) => <SecretPage />}/>
                 <Route path="/" render={(props) => <LoginPage />} />
               </Switch>
 

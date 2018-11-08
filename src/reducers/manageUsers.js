@@ -6,7 +6,8 @@ const initState = {
   scores: [],
   selectedUser: {},
   selectedScore: {},
-  activeItem:"bio"
+  activeItem:"bio",
+  secretPassword: false
 
 }
 
@@ -57,7 +58,7 @@ export default function manageUsers (state = initState, action) {
       console.log("in add score")
       return {
         ...state,
-        scores: [ ...state.scores]
+        scores: [ ...state.scores, action.payload]
       }
 
     case ('SELECT_SCORE'): {

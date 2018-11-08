@@ -26,6 +26,9 @@ class NavBar extends Component {
         <NavLink to="/Game2">
           <Menu.Item name='game2' active={activeItem === 'game2'} onClick={this.handleItemClick} />
         </NavLink>
+        <NavLink to="/Secret">
+          <Menu.Item name='secret' active={activeItem === 'secret'} onClick={this.handleItemClick} />
+        </NavLink>
       </Menu>
     )
   }
