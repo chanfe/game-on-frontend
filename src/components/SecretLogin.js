@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Header, Image, Icon, Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
 
-import { loginUser } from '../actions/userActions'
+import { setSecret } from '../actions/secretAction'
 import { connect } from 'react-redux'
 
-class LoginPage extends Component {
+class SecretLogin extends Component {
 
   constructor(props){
     super(props)
     this.state ={
       error:null,
-      username:"",
       password:""
     }
-  }
-
-  handleUsername = (event) =>{
-    this.setState({
-      username: event.target.value
-    })
   }
 
   handlePassword = (event) =>{
@@ -27,8 +20,15 @@ class LoginPage extends Component {
     })
   }
 
-  handleSubmit = () =>{
-    this.props.loginUser(this.state.username, this.state.password);
+  handleSubmit = (event) =>{
+    if(this.state.password == "LOSST"){
+      this.props.setSecret(true)
+    }
+    else{
+      this.setState({
+        password: ""
+      })
+    }
   }
 
 
@@ -36,16 +36,12 @@ class LoginPage extends Component {
   render(){
     return (
       <Segment>
+        <Image src='./Images/n-in-circle.jpg' centered/>
         <Grid centered columns={2}>
           <Grid.Column>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Field value={this.state.username} onChange={this.handleUsername}>
-              <label>Username</label>
-              <input placeholder='Username' />
-              </Form.Field>
               <Form.Field type='password' value={this.state.password} onChange={this.handlePassword}>
-              <label>Password</label>
-              <input placeholder='Password' type='password'/>
+                <input placeholder='Password' type='password'/>
               </Form.Field>
               <Button type='submit' floated='right'>Submit</Button>
             </Form>
@@ -58,16 +54,15 @@ class LoginPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users,
-    scores: state.scores
+    secretPassword: state.secretPassword
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (username, password) => dispatch(loginUser(username, password))
+    setSecret: (secret) => dispatch(setSecret(secret))
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(SecretLogin)

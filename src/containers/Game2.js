@@ -19,7 +19,7 @@ class Game2 extends Component {
     }
 
     this.unityContent = new UnityContent(
-      "Build/test_game.json",
+      "Build/real_test_game.json",
       "Build/UnityLoader.js"
     );
 
@@ -33,7 +33,6 @@ class Game2 extends Component {
         "user_id":this.props.login_user.id,
         "points": score
       }
-      console.log("login user id", this.props.login_user);
       this.props.sendScore(connectScore)
     })
   }
@@ -45,7 +44,6 @@ class Game2 extends Component {
       height:'607px',
       border:0,
     }
-    console.log(this.state.score);
 
     // <iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2Fp5oHLTic0yeGbiGdN8j2AGRauSJ2%2Fcontent%2Fa6a4aea6-e1ef-a70e-bc0f-402e07d828fd&imagePath=screens/0.png" style={gameStyle}></iframe>
     return (
@@ -66,7 +64,6 @@ class Game2 extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     login_user: state.login_user
   }

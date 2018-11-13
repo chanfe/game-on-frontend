@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Header, Image, Icon, Form, Checkbox, Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { sendScore } from '../actions/scoreActions'
+import ReactDOM from 'react-dom';
 
 
 // import UnityLoader from "../Build/UnityLoader.js";
@@ -9,7 +10,7 @@ import { sendScore } from '../actions/scoreActions'
 
 import Unity, { UnityContent } from "react-unity-webgl";
 
-class Game2 extends Component {
+class GamePage extends Component {
   constructor(props){
     super(props);
 
@@ -33,7 +34,6 @@ class Game2 extends Component {
         "user_id":this.props.login_user.id,
         "points": score
       }
-      console.log("login user id", this.props.login_user);
       this.props.sendScore(connectScore)
     })
   }
@@ -45,14 +45,13 @@ class Game2 extends Component {
       height:'607px',
       border:0,
     }
-    console.log(this.state.score);
 
     // <iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2Fp5oHLTic0yeGbiGdN8j2AGRauSJ2%2Fcontent%2Fa6a4aea6-e1ef-a70e-bc0f-402e07d828fd&imagePath=screens/0.png" style={gameStyle}></iframe>
     return (
       <div>
         <Segment>
           <div style={gameStyle}>
-            <Unity unityContent={this.unityContent} />
+            <Unity unityContent={this.unityContent}/>
           </div>
           <h2>left arrow - move left</h2>
           <h2>right arrow - move right</h2>
@@ -63,8 +62,8 @@ class Game2 extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     login_user: state.login_user
   }
@@ -76,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game2)
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage)

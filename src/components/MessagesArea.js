@@ -11,7 +11,6 @@ class MessagesArea extends React.Component{
 
   render(){
     const {id, title, messages} = this.props.conversation;
-    console.log("something",this.props.open);
     return (
       <Modal open={this.props.open} >
         <div className="messagesArea">

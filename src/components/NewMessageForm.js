@@ -51,7 +51,6 @@ class NewMessageForm extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     login_user: state.login_user
   }

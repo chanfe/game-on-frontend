@@ -97,7 +97,6 @@ class SignPage extends Component {
 
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     users: state.users,
     scores: state.scores

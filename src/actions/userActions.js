@@ -92,3 +92,9 @@ export const loginUser = (username, password) => {
       });
     }
 }
+
+export const logoutUser = () => {
+  return (dispatch) => {
+    return dispatch({type: 'LOGOUT', payload: null})
+  }
+}

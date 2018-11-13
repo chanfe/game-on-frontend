@@ -39,6 +39,10 @@ export default function manageUsers (state = initState, action) {
       return {...state, login_user: action.payload}
     }
 
+    case('LOGOUT'): {
+      return {...state, login_user: null}
+    }
+
     case ('EDIT_USER'): {
       // replaces old hobbit object with shiny new edited hobbit
       const newUsers = state.users.map(user => {
@@ -89,6 +93,9 @@ export default function manageUsers (state = initState, action) {
 
     case ('SET_MESSAGES'):
       return action.message
+
+    case ('SECRET'):
+      return {...state, secretPassword: action.payload}
 
     default:
       return state;

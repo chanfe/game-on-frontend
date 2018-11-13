@@ -4,7 +4,6 @@ import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 
 
 const score = (props) =>{
-  console.log("props", props.user)
   return(
     <Table.Row>
       <Table.Cell>{props.user ? props.user.username : props.score.user_id}</Table.Cell>
@@ -13,8 +12,6 @@ const score = (props) =>{
   )
 }
 const mapStateToProps = (state, ownProps) => {
-  console.log("own props", ownProps)
-  console.log(state)
   return {
     // selected: state.selectedUser.id === ownProps.user.id
   }

@@ -10,12 +10,10 @@ class ScorePage extends Component{
   componentDidMount() {
     this.props.loadUsers()
     this.props.loadScores()
-    console.log("load user", this.props.loadUsers())
   }
 
   render() {
     const highScore = this.props.scores.sort(function(a, b){return b.points - a.points})
-    console.log("high", highScore)
 
     const eachScore = highScore.map(score => {
       const scoreUser = this.props.users.find(user => {
@@ -64,7 +62,6 @@ class ScorePage extends Component{
 
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     users: state.users,
     scores: state.scores

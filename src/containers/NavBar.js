@@ -2,9 +2,19 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { logoutUser } from '../actions/userActions'
+import { setSecret } from '../actions/secretAction'
+
 
 class NavBar extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  handleLogout = () => {
+    localStorage.removeItem("jwt");
+    this.props.logoutUser()
+    this.props.setSecret(false)
+    console.log("Logouted");
+  };
 
   render() {
     const { activeItem } = this.props
@@ -29,13 +39,15 @@ class NavBar extends Component {
         <NavLink to="/Secret">
           <Menu.Item name='secret' active={activeItem === 'secret'} onClick={this.handleItemClick} />
         </NavLink>
+        <NavLink to="/Login">
+          <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleLogout} />
+        </NavLink>
       </Menu>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     activeItem: state.activeItem,
   }
@@ -43,7 +55,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    logoutUser: () => dispatch(logoutUser()),
+    setSecret: (secret) => dispatch(setSecret(secret))
   }
 }
 
