@@ -43,7 +43,7 @@ class ScorePage extends Component{
             <Grid columns={3} style= {paddingStyle}>
               <Container textAlign='center'>
                 <Segment centered style={{background: "#e5e5e5",}}>
-                  <h1 style={redStyle}>Hi - Score for Game One</h1>
+                  <h1 style={redStyle}>Hi - Score for Game Two</h1>
                 </Segment>
               </Container>
             </Grid>
