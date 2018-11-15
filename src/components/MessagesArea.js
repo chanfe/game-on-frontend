@@ -13,9 +13,13 @@ class MessagesArea extends React.Component{
     const {id, title, messages} = this.props.conversation;
     return (
       <Modal open={this.props.open} >
-        <div className="messagesArea">
+        <div className="messagesArea" style={{margin: "1em"}}>
           <Modal.Header><h1>{title}</h1></Modal.Header>
-          <ul>{this.orderedMessages(messages)}</ul>
+            <Modal.Content>
+              <Modal.Description>
+                {this.orderedMessages(messages)}
+              </Modal.Description>
+            </Modal.Content>
           <NewMessageForm conversation_id={id} />
         </div>
         <Modal.Actions>
@@ -32,7 +36,7 @@ class MessagesArea extends React.Component{
       (a, b) => new Date(a.created_at) - new Date(b.created_at)
     );
     return sortedMessages.map(message => {
-      return <li key={message.id}>{message.text}</li>;
+      return <Message key={message.id}>{message.text}</Message>;
     });
   };
 }

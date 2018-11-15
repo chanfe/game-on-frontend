@@ -43,7 +43,7 @@ class SecretLogin extends Component {
               <Form.Field type='password' value={this.state.password} onChange={this.handlePassword}>
                 <input placeholder='Password' type='password'/>
               </Form.Field>
-              <Button type='submit' floated='right'>Submit</Button>
+              <Button type='submit' floated='right'>Go</Button>
             </Form>
           </Grid.Column>
         </Grid>

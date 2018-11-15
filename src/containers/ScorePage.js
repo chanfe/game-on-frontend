@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
-import { Icon, Label, Menu, Table, Container } from 'semantic-ui-react'
+import { Icon, Label, Menu, Table, Container, Segment, Grid } from 'semantic-ui-react'
 import Score from '../components/Score'
 
 import { loadUsers } from '../actions/userActions'
 import { loadScores } from '../actions/scoreActions'
 import { connect } from 'react-redux'
+
+const paddingStyle = {
+  "padding-top": "1rem",
+  "padding-bottom": "1rem"
+};
+
+const grayStyle = {
+  background: "gray",
+};
+
+const redStyle = {
+  color: "#8c1c11",
+};
 
 class ScorePage extends Component{
   componentDidMount() {
@@ -13,7 +26,9 @@ class ScorePage extends Component{
   }
 
   render() {
-    const highScore = this.props.scores.sort(function(a, b){return b.points - a.points})
+    const filterdScore = this.props.scores.filter(function(elem) {return elem.scoreTable_id == 1})
+
+    const highScore = filterdScore.sort(function(a, b){return b.points - a.points})
 
     const eachScore = highScore.map(score => {
       const scoreUser = this.props.users.find(user => {
@@ -23,8 +38,18 @@ class ScorePage extends Component{
 
     return(
       <Container>
-      <h1>Hi - Score</h1>
-      <Table celled>
+        <Container >
+          <Segment>
+            <Grid columns={3} style= {paddingStyle}>
+              <Container textAlign='center'>
+                <Segment centered style={{background: "#e5e5e5",}}>
+                  <h1 style={redStyle}>Hi - Score for Game One</h1>
+                </Segment>
+              </Container>
+            </Grid>
+          </Segment>
+        </Container>
+      <Table celled style={{"margin-bottom": "1rem"}}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Player name</Table.HeaderCell>

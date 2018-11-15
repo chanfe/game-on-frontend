@@ -7,9 +7,10 @@ export const HEADERS = {
 
 export const updateUser = (user) => {
   return (dispatch) => {
-    console.log("updating user")
+    console.log("updating user", user)
+    console.log("heasers", HEADERS)
     fetch(`${API_ROOT}/users/${user.id}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: HEADERS,
       body: JSON.stringify(user)
     })
@@ -20,10 +21,19 @@ export const updateUser = (user) => {
 
 export const loadUsers = () => {
   return (dispatch) => {
-    console.log("fetching user", dispatch)
+    console.log("fetching users", dispatch)
     return fetch(`${API_ROOT}/users/`)
     .then(r => r.json())
     .then(allUsers => dispatch({type: 'LOAD_USERS', payload: allUsers}))
+  }
+}
+
+export const loadUser = (user_id) => {
+  return (dispatch) => {
+    console.log("fetching user", dispatch)
+    return fetch(`${API_ROOT}/users/${user_id}`)
+    .then(r => r.json())
+    .then(user => dispatch({type: 'LOAD_USER', payload: user}))
   }
 }
 

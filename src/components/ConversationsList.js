@@ -5,7 +5,7 @@ import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
 import Cable from './Cable';
 
-import { Button, Header, Image, Modal, Icon, Form, Checkbox, Message } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Icon, Form, Checkbox, Message, Container, Segment  } from 'semantic-ui-react'
 
 
 class ConversationsList extends React.Component {
@@ -48,7 +48,8 @@ class ConversationsList extends React.Component {
   render = () => {
     const { conversations, activeConversation } = this.state;
     return (
-      <div className="conversationsList">
+
+      <Container className="conversationsList" style={{margin: "1em"}}>
         <ActionCable
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
@@ -72,7 +73,7 @@ class ConversationsList extends React.Component {
             handleModal={this.handleModal}
           />
         ) : null}
-      </div>
+      </Container>
     );
   };
 }
@@ -91,7 +92,7 @@ const mapConversations = (conversations, handleClick, handleModal) => {
   return conversations.map(conversation => {
     return (
       <div>
-      <Button key={conversation.id} onClick={() => {
+      <Button key={conversation.id} style={{width: "100%"}} onClick={() => {
         handleClick(conversation.id)
         handleModal()
       }}>

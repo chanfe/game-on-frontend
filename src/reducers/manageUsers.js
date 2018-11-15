@@ -7,8 +7,8 @@ const initState = {
   selectedUser: {},
   selectedScore: {},
   activeItem:"bio",
-  secretPassword: false
-
+  secretPassword: false,
+  user_achievements:{}
 }
 
 export default function manageUsers (state = initState, action) {
@@ -16,6 +16,10 @@ export default function manageUsers (state = initState, action) {
 
     case ('LOAD_USERS'): {
       return {...state, users: action.payload}
+    }
+
+    case ('LOAD_USER'): {
+      return {...state, user_achievements: action.payload}
     }
 
     case 'ADD_USER':
