@@ -65,8 +65,7 @@ class SignPage extends Component {
     }}
 
     let error = this.props.newUser(addUser)
-    console.log(error)
-    error ? alert(error) : this.props.history.push("/");
+    this.props.history.push("/");
 
   }
 
