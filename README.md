@@ -12,6 +12,7 @@ A 2D adaptive adventure game.  The player choose to ignore text or follow the te
 ## Versioning
 
 We use [Github](http://https://github.com/.org/) for versioning. For the versions available, see the [game-on-frontend](https://github.com/chanfe/game-on-frontend).
+[game-on-backend](https://github.com/chanfe/game-on-backend).
 
 ## Authors
 
