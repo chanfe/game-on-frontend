@@ -88,7 +88,7 @@ export const loginUser = (username, password) => {
             localStorage.setItem("jwt", resp.jwt);
             console.log("jwt code",resp.jwt)
 
-            fetch("http://localhost:3000/current_user", {
+            fetch(`${API_ROOT}/current_user`, {
               headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",
