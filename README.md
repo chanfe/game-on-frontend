@@ -1,6 +1,6 @@
 # Follow Game
 
-A 2D adaptive adventure game.  The player choose to ignore text or follow the text.
+A 2D adaptive adventure game.  The player choose to ignore text or follow the text. The second game is collect all of the diamond coins avaiable in the game.  The achievement page will show you if you collect all of the avaiable coins. 
 
 
 ## Built With
