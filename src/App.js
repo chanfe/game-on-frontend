@@ -14,7 +14,7 @@ import Welcome from './components/Welcome';
 import history from './components/history'
 
 import { userLogin } from './actions/userActions'
-import { loginUser } from './actions/userActiovns'
+import { loginUser } from './actions/userActions'
 import { connect } from 'react-redux'
 
 import { Button, Header, Image, Icon, Form, Checkbox, Grid, Segment, List, Container } from 'semantic-ui-react'
